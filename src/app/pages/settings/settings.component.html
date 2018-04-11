@@ -1,0 +1,11 @@
+<div class="page-content page-settings">
+  <div
+    class="tile-container shadow-wide"
+    *ngFor="let idx of [1]"
+    (click)="goTo('variables')"
+  >
+    <div class="tile-title">Variables</div>
+    <img src="assets/img/variables.png" alt="Variables" class="tile-logo">
+    <div class="tile-description">Here you can view the values of the variables of your system.</div>
+  </div>
+</div>

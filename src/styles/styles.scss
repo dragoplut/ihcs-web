@@ -1,0 +1,209 @@
+/* this file will be extracted to main dist folder and is imported in index.html */
+/* This file is for setting global styles  */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~@angular/material/theming';
+@import 'variables';
+
+@mixin animationHelper {
+  -webkit-transform: translateZ(0) rotate(0.01deg);
+  -ms-transform: translateZ(0) rotate(0.01deg);
+  transform: translateZ(0) rotate(0.01deg);
+}
+
+// define 3 theme color
+// mat-palette accepts $palette-name, main, lighter and darker variants
+$my-theme-primary: mat-palette($mat-indigo, 700, 300, 900);
+$my-theme-accent: mat-palette($mat-blue-gray);
+$my-theme-warn: mat-palette($mat-deep-orange, A200);
+
+// create theme (use mat-dark-theme for themes with dark backgrounds)
+$my-theme: mat-light-theme(
+    $my-theme-primary,
+    $my-theme-accent,
+    $my-theme-warn
+);
+
+// always include only once per project
+@include mat-core();
+
+// import our custom theme
+//@import 'my-theme.scss';
+
+// specify theme class eg: <body class="my-theme"> ... </body>
+.my-theme {
+
+  // use our theme with angular-material-theme mixin
+  @include angular-material-theme($my-theme);
+}
+
+/******************************************
+              COMMON STYLES
+******************************************/
+
+.page-content {
+  background-color: $color-grey-bg;
+}
+
+.center-block {
+  display: block;
+  margin: 0 auto;
+}
+
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+
+.shadow {
+  box-shadow: 3px 3px 4px 0 rgba(#000, 0.25);
+}
+.shadow-light {
+  box-shadow: 0 3px 4px 0 rgba(#000, 0.15);
+}
+.shadow-wide {
+  @include animationHelper;
+  box-shadow: 2px 2px 10px 4px rgba(0, 0, 0, 0.2);
+  transition: box-shadow .2s ease;
+}
+.shadow-wide:hover {
+  box-shadow: 2px 2px 15px 6px rgba(0, 0, 0, 0.25);
+}
+
+.btn {
+
+}
+.btn.btn-wide {
+  background-color: $color-blue;
+  color: $color-white;
+  margin-top: 30px;
+  height: 57px;
+  width: 335px;
+}
+.btn.btn-wide:hover {
+  background-color: $color-light-blue;
+}
+.btn.btn-wide[disabled] {
+  background-color: $color-light-grey;
+  cursor: not-allowed;
+}
+
+/******************************************
+              NAV BAR STYLES
+******************************************/
+
+.nav-menu {
+  color: #838383;
+  font-size: 18px;
+  text-align: center;
+  .btn {
+    color: #838383;
+    font-size: 18px;
+    margin: 0;
+    height: 68px;
+    width: 68px;
+    .mat-button-wrapper {
+      vertical-align: middle;
+      mat-icon {
+        line-height: 20px;
+      }
+    }
+  }
+  .btn.btn-logout {
+    font-size: 16px;
+    min-width: 160px;
+    padding: 0 10px;
+  }
+  .nav-logo {
+    margin: 9px 0;
+    height: 50px;
+    width: 50px;
+  }
+  .nav-title {
+    line-height: 68px;
+    position: absolute;
+    width: 300px;
+    height: 68px;
+    left: calc(50% - 150px);
+    top: 0;
+  }
+  .nav-username {
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    padding: 14px 10px;
+    text-align: left;
+    height: 68px;
+    width: auto;
+    min-width: 100px;
+    div {
+      font-size: 14px;
+      line-height: 20px;
+      text-align: left;
+      height: 20px;
+      width: 100%;
+    }
+  }
+}
+
+/******************************************
+              TILE STYLES
+******************************************/
+
+.tile-container {
+  background-color: $color-white;
+  border-radius: 3px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  margin: 15px;
+  padding: 15px 40px;
+  position: relative;
+  text-align: center;
+  //height: calc(33vw - 9vw);
+  //width: calc(33vw - 8vw);
+  //max-height: 329px;
+  //max-width: 348px;
+  //min-height: 110px;
+  //min-width: 100px;
+  height: 329px;
+  width: 348px;
+  vertical-align: top;
+  .tile-title {
+    color: #585858;
+    display: block;
+    font-size: 22px;
+    font-weight: 500;
+    margin: 20px auto;
+    height: 20px;
+    width: 100%;
+    vertical-align: top;
+  }
+  .tile-logo {
+    display: block;
+    margin: 35px auto;
+    height: 110px;
+    width: auto;
+    vertical-align: top;
+  }
+  .tile-description {
+    color: #7e7e7e;
+    font-size: 16px;
+    text-align: left;
+    width: 100%;
+    vertical-align: top;
+  }
+}
+
+/******************************************
+    TRUNCATE OVERFLOW TEXT IN ONE LINE
+******************************************/
+
+.truncated {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  white-space: nowrap;
+}

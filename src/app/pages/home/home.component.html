@@ -1,0 +1,60 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="false"
+               (closed)="false">
+    <mat-sidenav-content>
+      <div class="sidenav-header">
+        <span>MENU</span>
+        <button mat-button (click)="close('escape')">Close <mat-icon>close</mat-icon></button>
+      </div>
+      <p>IHCS Web Site</p>
+      <p>Installation</p>
+      <div class="example-events">
+      </div>
+    </mat-sidenav-content>
+
+  </mat-sidenav>
+
+</mat-sidenav-container>
+
+<div class="main-container">
+  <div class="nav-menu shadow-light">
+    <button
+      mat-button
+      type="button"
+      class="btn btn-nav pull-left"
+      (click)="openMenu()"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <img src="assets/img/logo.png" alt="Flexicontrol" class="nav-logo pull-left">
+    <button
+      *ngIf="state._state.activeRoute.reference"
+      mat-button
+      type="button"
+      class="btn btn-nav btn-logout pull-left"
+      (click)="goTo(state._state.activeRoute.reference)"
+    >
+      <mat-icon class="material-icons">arrow_back</mat-icon>
+      Back to {{state._state.activeRoute.referenceTitle}}
+    </button>
+
+    <span class="nav-title">{{state._state.activeRoute.pathTitle}}</span>
+    <button
+      mat-button
+      type="button"
+      class="btn btn-nav btn-logout pull-right"
+      (click)="logOut()"
+    >
+      <mat-icon class="material-icons">exit_to_app</mat-icon>
+      Logout
+    </button>
+    <div class="nav-username pull-right">
+      <div>Logged as:</div>
+      <div>Flexicontrol</div>
+    </div>
+  </div>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+</div>
