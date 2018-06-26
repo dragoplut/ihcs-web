@@ -1,3 +1,20 @@
+export const LANG_KEY: string = 'app_lang';
+
+export const TYPE: any = {
+  DEVICE: 'device',
+  MODULE: 'module',
+  MODULES: 'modules',
+  NONE: 'none',
+  VARIABLES: 'variables'
+};
+
+export const MODULES_MOCK: any[] = [
+  { name: 'RVM 1', size: '24 KB', loopTime: '0.25 s.', status: 'Running', errors: [ 'alert' ] },
+  { name: 'RVM 2', size: '18 KB', loopTime: '0.20 s.', status: 'Stopped', errors: [ 'alert' ] },
+  { name: 'RVM 3', size: '22 KB', loopTime: '0.25 s.', status: 'Running', errors: [ 'alert' ] },
+  { name: 'RVM 4', size: '21 KB', loopTime: '0.25 s.', status: 'Running', errors: [ 'alert' ] }
+];
+
 export const VARIABLES_MOCK: any = {
   id: '0',
   jsonrpc: '2.0',

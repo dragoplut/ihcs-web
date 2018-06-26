@@ -1,0 +1,30 @@
+@import '/../../../styles/variables';
+
+.search-container {
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 12px 24px;
+  position: relative;
+  height: 48px;
+  width: calc(60% - 50px);
+  .search-icon, .search-input {
+    color: $color-text-grey;
+    display: inline-block;
+    position: relative;
+    line-height: 24px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .search-icon {
+    height: 18px;
+    width: 18px;
+  }
+  .search-input {
+    border: none;
+    font-size: 14px;
+    outline: none !important;
+    padding-left: 12px;
+    height: 24px;
+    width: calc(100% - 72px);
+  }
+}

@@ -49,13 +49,12 @@ export class LoginComponent implements OnInit {
   }
 
   public logIn(data: AuthCred, salt: string) {
-    console.log('logIn data: ', data, ' salt: ', salt);
     this._auth.logIn(data, salt).subscribe(
       (resp: string) => {
-        console.log('logIn done: ', resp);
         const routes: any = this.state.get('routes');
-        this.state.set('activeRoute', routes.settings);
-        this.router.navigate(routes.settings.path);
+        this.state.set('activeRoute', routes.home);
+        this.state.set('username', this.cred.username);
+        this.router.navigate(routes.home.path);
       },
       (err: any) => console.log(err)
     );

@@ -1,0 +1,88 @@
+<div class="actions-container">
+  <button
+    mat-button
+    type="button"
+    class="btn btn-action-large btn-green shadow-light"
+    (click)="newModule()"
+  >
+    +{{'general.add_new' | translate}}
+  </button>
+
+  <button
+    mat-button
+    type="button"
+    class="btn btn-table-action pull-right shadow-light"
+    (click)="false"
+    [disabled]="false"
+  >
+    <mat-icon class="material-icons">more_horiz</mat-icon>
+  </button>
+</div>
+
+<div class="table-container table-modules mat-elevation-z8">
+  <mat-table #table [dataSource]="items" matSort>
+
+    <ng-container matColumnDef="checked">
+      <mat-header-cell *matHeaderCellDef><mat-checkbox class="example-margin" [(ngModel)]="checkedAll" (change)="selectAll()"></mat-checkbox></mat-header-cell>
+      <mat-cell *matCellDef="let element"><mat-checkbox class="example-margin" [(ngModel)]="element.checked"></mat-checkbox></mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="size">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Size </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.size}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="loopTime">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Loop Time </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.loopTime || ''}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="errors">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Errors </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.errors || ''}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="menu">
+      <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button
+          mat-button
+          type="button"
+          class="btn btn-row-menu"
+          tapable
+          [matMenuTriggerFor]="menuForModule"
+          (click)="menuFor(element)"
+        >
+          <mat-icon class="material-icons">more_horiz</mat-icon>
+        </button>
+        <mat-menu #menuForModule="matMenu">
+          <button mat-menu-item tapable (click)="false"><span class="menu-icon-container"><mat-icon>stop</mat-icon></span> {{'general.stop' | translate}}</button>
+          <button mat-menu-item tapable (click)="goTo('module')"><span class="menu-icon-container"><mat-icon>info</mat-icon></span> {{'general.details' | translate}}</button>
+          <button mat-menu-item tapable (click)="false"><span class="menu-icon-container"><mat-icon>settings</mat-icon></span> {{'general.variables' | translate}}</button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item tapable (click)="false"><span class="menu-icon-container"><mat-icon>delete</mat-icon></span> {{'general.delete' | translate}}</button>
+        </mat-menu>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator
+    #paginator
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 20, 50]"
+    [showFirstLastButtons]="true">
+  </mat-paginator>
+</div>

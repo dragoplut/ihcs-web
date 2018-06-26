@@ -1,0 +1,45 @@
+@import '/../../../styles/variables';
+
+.page-module {
+  .page-content-card {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0 40px;
+    width: 100%;
+  }
+  .content-half-side {
+    display: inline-block;
+    padding: 30px 0 0;
+    position: relative;
+    width: calc(50% - 40px);
+    vertical-align: top;
+    .content-line {
+      font-size: 16px;
+      margin: 0 0 30px;
+      height: 40px;
+      line-height: 40px;
+      width: 100%;
+      input, textarea {
+        color: $color-grey-dark
+      }
+      .mat-form-field {
+        margin-right: 20px;
+      }
+      .mat-form-field, .mat-form-field-infix {
+        width: calc(100% - 120px);
+      }
+    }
+    .content-line .content-half-side {
+      padding: 0;
+    }
+  }
+}
+
+.drop-container {
+  font-size: 16px;
+  margin: 0 0 30px;
+  height: 212px;
+  line-height: 40px;
+  width: calc(100% - 40px);
+}
+

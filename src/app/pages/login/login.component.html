@@ -1,22 +1,25 @@
+<div class="lang-selector-absolute-container"><lang-selector></lang-selector></div>
 <div class="login-container">
   <div class="overlay-dark"></div>
   <form #loginForm class="form-container shadow" name="loginForm" (submit)="authenticate(cred)">
     <div class="form-content">
-      <img src="assets/img/logo.png" alt="Flexicontrol" class="form-logo">
+      <img src="assets/img/logo.png" [alt]="'login.title' | translate" class="form-logo" name="loginLogoImg">
       <mat-form-field>
-        <input matInput [(ngModel)]="cred.username" name="username" placeholder="Username:" type="text">
+        <input matInput [(ngModel)]="cred.username" name="username" [placeholder]="'login.username_placeholder' | translate" type="text">
       </mat-form-field>
       <mat-form-field>
-        <input matInput [(ngModel)]="cred.password" name="password" placeholder="Password:" type="password" autocomplete="new-password">
+        <input translate matInput [(ngModel)]="cred.password" name="password" [placeholder]="'login.password_placeholder' | translate" type="password" autocomplete="new-password">
       </mat-form-field>
       <button
+        translate
         mat-button
         color="accent"
         type="submit"
+        name="loginBtn"
         class="btn btn-wide center-block"
         [disabled]="!cred.username || !cred.password"
       >
-        LOGIN
+        {{'login.sign_in_text' | translate}}
       </button>
     </div>
   </form>

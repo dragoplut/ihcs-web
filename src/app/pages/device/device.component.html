@@ -1,0 +1,35 @@
+<div class="page-content page-device">
+  <mat-card class="page-content-card">
+    <div class="content-half-side">
+      <div class="content-line">
+        <mat-form-field>
+          <input matInput [(ngModel)]="data.groupName" [placeholder]="'device.name_placeholder' | translate">
+        </mat-form-field>
+        <button
+          mat-button
+          [disabled]="!data.groupName"
+          type="button"
+          class="btn btn-green"
+          (click)="saveDevice(data)"
+        >
+          {{'general.save' | translate}}
+        </button>
+      </div>
+      <div class="content-line">
+        {{'device.mac_label' | translate}} {{data.mac}}
+      </div>
+      <div class="content-line">
+        {{'device.product_code_label' | translate}} {{data.productCode}}
+      </div>
+    </div>
+    <div class="content-half-side">
+      <div class="content-line"> </div>
+      <div class="content-line">
+        {{'device.ip_label' | translate}} {{data.ip}}
+      </div>
+      <div class="content-line">
+        {{'device.product_number_label' | translate}} {{data.productNumber}}
+      </div>
+    </div>
+  </mat-card>
+</div>

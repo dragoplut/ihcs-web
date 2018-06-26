@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialAppModule } from './ngmaterial.module';
+import { TreeModule } from 'angular-tree-component';
+import { FileDropModule } from 'ngx-file-drop';
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { MomentModule } from 'angular2-moment';
+// import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -19,11 +26,16 @@ import { HomeComponent } from './home';
 import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 
+import { TranslateService } from '@ngx-translate/core';
+import { AppTranslationModule } from './app.translation.module';
+
 import '../styles/styles.scss';
 import '../styles/headings.css';
 import * as services from './services/';
 import * as components from './components/';
 import * as pages from './pages/';
+
+const config: SocketIoConfig = { url: 'ws://192.168.157.167/ws/varserver', options: {} };
 
 const mapValuesToArray = (obj: any) => Object.keys(obj).map((key: any) => obj[key]);
 
@@ -51,17 +63,26 @@ interface StoreType {
   ],
   /**
    * Import Angular's modules.
+   * useHash: Boolean(history.pushState) === false
    */
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MaterialAppModule,
-    FormsModule,
-    HttpClientModule,
     RouterModule.forRoot(ROUTES, {
-      useHash: Boolean(history.pushState) === false,
+      useHash: true,
       preloadingStrategy: PreloadAllModules
     }),
+    BrowserModule,
+    BrowserAnimationsModule,
+    FileDropModule,
+    MaterialAppModule,
+    AppTranslationModule,
+    TreeModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MomentModule,
+    Ng2GoogleChartsModule,
+    NgxMaterialTimepickerModule.forRoot(),
+    SocketIoModule.forRoot(config),
 
     /**
      * This section will import the `DevModuleModule` only in certain build types.
@@ -69,6 +90,11 @@ interface StoreType {
      * This is a simple example, a big app should probably implement some logic
      */
     ...environment.showDevModule ? [] : [],
+  ],
+  entryComponents: [
+    components.DialogManageGroupsComponent,
+    components.DialogGroupSettingsComponent,
+    components.DialogLogComponent
   ],
   /**
    * Expose our Services and Providers into Angular's dependency injection.

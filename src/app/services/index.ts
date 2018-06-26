@@ -2,3 +2,4 @@
 export { ApiService } from './api/index';
 export { AuthService } from './auth/index';
 export { JsonService } from './json/index';
+export { SocketService } from './socket/index';

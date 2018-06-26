@@ -18,7 +18,8 @@ export class ApiService implements OnInit {
 
   public headers: HttpHeaders = new HttpHeaders();
   // protected endpoint: string = process.env.API_URL;
-  protected endpoint: string = 'http://192.168.157.167';
+  // protected endpoint: string = 'http://192.168.157.167';
+  protected endpoint: string = 'http://192.168.157.146';
 
   constructor(
     public http: HttpClient,

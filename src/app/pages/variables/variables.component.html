@@ -1,3 +1,4 @@
 <div class="page-content page-variables">
-  <table-component *ngIf="variables && variables.length" (items)="variables"></table-component>
+  <table-variables (items)="variables" (confirmAction)="saveVar($event)"></table-variables>
+  <div *ngIf="loading" class="block-actions"><br/><mat-spinner class="loading-spinner center-block" [diameter]="30"></mat-spinner><br/></div>
 </div>

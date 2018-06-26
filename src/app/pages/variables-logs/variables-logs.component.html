@@ -1,0 +1,97 @@
+<div class="page-content page-variables">
+  <div class="block-actions">
+
+    <button
+      mat-button
+      type="button"
+      class="btn btn-block-action shadow-btn pull-right"
+      tapable
+      (click)="export()"
+    >
+      {{'general.export' | translate}}
+    </button>
+
+    <label for="chartShowFilter" class="pull-left custom-label">SHOW: </label>
+    <mat-card class="actions-card-rounded pull-left" #chartShowFilter id="chartShowFilter">
+      <mat-form-field>
+        <mat-select disabled="true" (change)="false" [placeholder]="'general.all' | translate" [formControl]="showOptions">
+          <mat-option *ngFor="let showOption of showOptionsList" [value]="showOption">{{showOption}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card>
+
+    <label for="chartGroupFilter" class="pull-left custom-label">GROUP: </label>
+    <mat-card class="actions-card-rounded pull-left" #chartGroupFilter id="chartGroupFilter">
+      <mat-form-field>
+        <mat-select disabled="true" (change)="false" [placeholder]="'general.all' | translate" [formControl]="groupOptions">
+          <mat-option *ngFor="let groupOption of groupOptionsList" [value]="groupOption">{{groupOption}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card>
+
+    <label for="chartDateFilter" class="pull-left custom-label">DATE: </label>
+    <mat-card class="actions-card-rounded pull-left" #chartDateFilter id="chartDateFilter">
+      <mat-form-field>
+        <input
+          readonly
+          matInput
+          [matDatepicker]="picker"
+          (focus)="picker.open()"
+          (dateChange)="requestLogs($event)"
+          [ngModel]="activeVariable.startDate"
+          placeholder="Choose a date"
+        >
+        <span class="label-absolute">{{activeVariable.startDateFormatted}}</span>
+        <mat-datepicker-toggle matSuffix [for]="picker">
+          <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </mat-card>
+
+    <label for="chartTimeFilter" class="pull-left custom-label">TIME: </label>
+    <mat-card class="actions-card-rounded pull-left" #chartTimeFilter id="chartTimeFilter">
+      <mat-form-field>
+        <!--<span class="label-absolute">{{activeVariable.startTimeFormatted}}</span>-->
+        <input
+          readonly
+          matInput
+          [ngxTimepicker]="pickerTime"
+          [format]="24"
+          [value]="activeVariable.startTime"
+          [(ngModel)]="activeVariable.startTime"
+          placeholder="Choose time"
+        >
+        <ngx-material-timepicker
+          #pickerTime
+          (timeSet)="setTimeAndGetVars($event, 'timepicker timeSet')"
+        ></ngx-material-timepicker>
+      </mat-form-field>
+    </mat-card>
+
+  </div>
+
+  <div *ngIf="varsLoggingOff && varsLoggingOff.length" class="block-actions"><br/>
+    Next variables have logging turned off or have no log data: <br/>
+    <div class="text-grey text-small">{{varsLoggingOff}}</div>
+  </div>
+  <div *ngIf="!loading && !this.scatterChartData.dataTable.length" class="block-actions">Log data is empty<br/></div>
+
+  <div class="block-container shadow-light">
+    <div class="block-header">
+      <span class="pull-left">GRAPH</span>
+      <span class="pull-right pointer" (click)="block.chart = !block.chart">
+        {{ block.chart ? ('general.hide' | translate) : ('general.show' | translate) }}
+        <mat-icon *ngIf="block.chart" class="material-icons">arrow_drop_down</mat-icon>
+        <mat-icon *ngIf="!block.chart" class="material-icons">arrow_drop_up</mat-icon>
+      </span>
+    </div>
+    <div class="block-content" [ngClass]="{ 'block-closed': !block.chart || loading || (!loading && !this.scatterChartData.dataTable.length) }">
+      <google-chart #cchart [data]="scatterChartData"></google-chart>
+    </div>
+  </div>
+  <div *ngIf="loading" class="block-actions"><br/><mat-spinner class="loading-spinner center-block" [diameter]="30"></mat-spinner><br/></div>
+  <br/>
+  <table-variables-logs *ngIf="this.scatterChartData.dataTable.length && activeVariable.multipleNames.length" (tableItems)="variablesLogsItems" (varNames)="activeVariable.multipleNames"></table-variables-logs>
+
+</div>

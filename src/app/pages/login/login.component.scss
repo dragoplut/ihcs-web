@@ -53,3 +53,9 @@
   z-index: 0;
   opacity: .99;
 }
+.lang-selector-absolute-container {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 99;
+}

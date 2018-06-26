@@ -1,9 +1,29 @@
 @import '../../../styles/_variables.scss';
 
+@mixin animationHelper {
+  -webkit-transform: translateZ(0) rotate(0.01deg);
+  -ms-transform: translateZ(0) rotate(0.01deg);
+  transform: translateZ(0) rotate(0.01deg);
+}
+
+.side-menu-container, .main-container, .content-overlay {
+  @include animationHelper;
+}
+
 .main-container {
+  display: inline-block;
+  float: right;
   position: relative;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  min-width: 920px;
+  vertical-align: top;
+  transition: all .3s ease;
+  z-index: 9;
 
   .nav-menu {
+    float: right;
     background-color: $color-white;
     box-sizing: border-box;
     padding: 0;
@@ -32,3 +52,69 @@
   z-index: 15;
 }
 
+.main-container.main-container-narrow,
+.nav-menu-narrow {
+  width: calc(100% - 458px);
+}
+
+.side-menu-container {
+  padding: 0;
+  position: absolute;
+  transition: all .3s ease;
+  left: -458px;
+  top: 0;
+  height: 100%;
+  width: 458px;
+  vertical-align: top;
+  .sidenav-header {
+    height: 68px;
+    background-color: $color-blue-menu;
+    line-height: 68px;
+    padding-left: 30px;
+    color: #fff;
+    font-size: 18px;
+    button.mat-button {
+      float: right;
+      font-size: 17px;
+      height: 68px;
+      padding-left: 25px;
+    }
+  }
+  .sidenav-subheader {
+    background-color: transparent;
+    color: #585858;
+    font-size: 15px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 15px;
+  }
+  .sidenav-subheader.bg-grey-light {
+    color: $color-blue-menu;
+  }
+  .tree-container {
+    padding-left: 30px;
+  }
+}
+.side-menu-opened {
+  background-color: $color-white;
+  left: 0;
+  margin-left: 0;
+  z-index: 17;
+}
+.content-overlay {
+  background: rgba(0,0,0, .4);
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: all .3s ease;
+  height: 100vh;
+  width: 100vw;
+  z-index: 0;
+}
+.content-overlay-opened {
+  left: 458px;
+  opacity: 1;
+  width: calc(100vw - 458px);
+  z-index: 16;
+}

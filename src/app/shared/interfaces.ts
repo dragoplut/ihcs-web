@@ -12,6 +12,20 @@ export interface IActiveRoute {
 export interface IJsonServiceParam {
   type?: number;
   userName?: string;
+  interval?: number;
+  name?: string;
+  period?: number;
+  start_date?: any;
+  end_date?: any;
+  variable?: any;
+}
+export interface IJsonServiceVariableUpdate {
+  enabled?: boolean;
+  gain?: number;
+  method?: number;
+  name?: string;
+  offset?: number;
+  period?: number;
 }
 export interface IJsonServicesPayload {
   id: number;

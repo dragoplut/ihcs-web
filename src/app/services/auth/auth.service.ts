@@ -12,7 +12,8 @@ import { ActiveRoute } from '../../shared/patterns/';
 
 @Injectable()
 export class AuthService {
-  private luaEndpoint: string = 'http://192.168.157.167/index.lua';
+  // private luaEndpoint: string = 'http://192.168.157.167/index.lua';
+  private luaEndpoint: string = 'http://192.168.157.146/index.lua';
 
   constructor(
     private http: HttpClient,
@@ -20,7 +21,8 @@ export class AuthService {
   ) {
     const deviceUrl: string = 'index.lua/static/';
     this.luaEndpoint = location.href.indexOf(deviceUrl) === -1 ?
-      'http://192.168.157.167/index.lua' : `${location.origin}/index.lua`;
+      'http://192.168.157.146/index.lua' : `${location.origin}/index.lua`;
+      // 'http://192.168.157.167/index.lua' : `${location.origin}/index.lua`;
   }
 
   public getSalt(username: string): Observable<any> {
@@ -30,11 +32,9 @@ export class AuthService {
       {responseType: 'text'}
     )
         .catch((err: any) => {
-          console.log('getSalt err: ', err);
           return Observable.throw(err);
         })
         .map((resp: any) => {
-          console.log('getSalt resp: ', resp);
           return resp;
         });
   }

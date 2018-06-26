@@ -28,29 +28,64 @@ export class AppComponent implements OnInit {
 
   public ngOnInit() {
     const routes: any = {
-      login: {
+      'login': {
         path: ['', 'login'],
         pathTitle: 'LogIn'
       },
-      settings: {
+      'settings': {
         path: ['', 'settings'],
-        pathTitle: 'Settings'
+        pathTitle: 'Settings',
+        reference: 'home',
+        referenceTitle: 'Home'
       },
-      variables: {
-        path: ['', 'variables'],
+      'home': {
+        path: ['/home'],
+        pathTitle: 'Home'
+      },
+      'variables': {
+        path: ['/variables'],
         pathTitle: 'Variable Monitor',
+        reference: 'settings',
+        referenceTitle: 'Settings'
+      },
+      'log-book': {
+        path: ['/log-book'],
+        pathTitle: 'Log Book',
+        reference: 'home',
+        referenceTitle: 'Home'
+      },
+      'variables-logs': {
+        path: ['/variables-logs'],
+        pathTitle: 'Variables Logs',
+        reference: 'variables',
+        referenceTitle: 'Variable Monitor'
+      },
+      'device': {
+        path: ['', 'device'],
+        pathTitle: 'Device',
+        reference: 'variables',
+        referenceTitle: 'Variable Monitor'
+      },
+      'module': {
+        path: ['', 'device', '', 'module', ''],
+        pathTitle: 'Module',
+        reference: 'settings',
+        referenceTitle: 'Settings'
+      },
+      'modules': {
+        path: ['', 'device', '', 'modules'],
+        pathTitle: 'Modules',
         reference: 'settings',
         referenceTitle: 'Settings'
       },
     };
 
     const deviceUrl: string = 'index.lua/static/';
-    const activeRoute: ActiveRoute = location.href.indexOf(deviceUrl) === -1 ?
-      routes.login : routes.settings;
+    const activeRoute: ActiveRoute = window.location.href.indexOf(deviceUrl) !== -1 ?
+      routes.login : routes.home;
 
     this.appState.set('routes', routes);
     this.appState.set('activeRoute', activeRoute);
-    console.log('Initial App State', this.appState.state);
   }
 
 }

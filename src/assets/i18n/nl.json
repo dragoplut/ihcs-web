@@ -1,0 +1,125 @@
+{
+  "login": {
+    "title": "Flexicontrol",
+    "email_placeholder": "Email",
+    "username_placeholder": "Inlognaam",
+    "password_placeholder": "Wachtwoord",
+    "email": "email",
+    "username": "Inlognaam",
+    "password": "Wachtwoord",
+    "sign_in": "Login",
+    "forgot_password": "Forgotten password?",
+    "sign_in_text": "Login"
+  },
+  "device": {
+    "name_placeholder": "Name:",
+    "mac_label": "MAC:",
+    "product_code_label": "Product code:",
+    "ip_label": "IP:",
+    "product_number_label": "Product Number"
+  },
+  "dialog": {
+    "manage_groups": {
+      "add_group": "Add Group",
+      "group_name": "Group name:",
+      "title": "Manage Groups",
+      "groupname_placeholder": "Group name:"
+    },
+    "group_settings": {
+      "title": "Group Settings"
+    },
+    "log": {
+      "title": "Log",
+      "log_on_off": "Log off/on",
+      "log_method": "Select the log method:",
+      "log_interval": "Select the log interval (in minutes):",
+      "view_options": "View options:"
+    }
+  },
+  "variables": {
+    "menu": {
+      "group_settings": "Group Settings",
+      "log_settings": "Log Settings",
+      "show_logs": "Show Logs"
+    },
+    "table": {
+      "name": "Name",
+      "value": "Value",
+      "status": "Status",
+      "group_name": "Group Name",
+      "gain": "Gain",
+      "offset": "Offset",
+      "log": "Log",
+      "on_change": "On Change",
+      "on_time": "On Time"
+    }
+  },
+  "module": {
+    "description": "Description",
+    "dragndrop": "Drag & Drop a File"
+  },
+  "general": {
+    "all": "All",
+    "apply": "Apply",
+    "add_new": "ADD NEW",
+    "cancel": "Cancel",
+    "date": "Date",
+    "delete": "Delete",
+    "details": "Details",
+    "description": "Description",
+    "edit": "Edit",
+    "export": "EXPORT",
+    "save": "Save",
+    "size": "Size",
+    "stop": "Stop",
+    "show": "Show",
+    "hide": "Hide",
+    "title": "Title",
+    "home": "Home",
+    "gain": "Gain",
+    "offset": "Offset",
+    "variables": "Variables",
+    "forms": {
+      "option1": "Option 1"
+    },
+    "menu": {
+      "dashboard": "Dashboard",
+      "users": "Users",
+      "pages": "Pages",
+      "login": "Login",
+      "register": "Register",
+      "menu_level_1": "Menu Level 1",
+      "menu_level_1_1": "Menu Level 1.1",
+      "menu_level_1_2": "Menu Level 1.2",
+      "menu_level_1_2_1": "Menu Level 1.2.1",
+      "external_link": "External Link"
+    },
+    "created_with": "Created with"
+  },
+  "dashboard": {
+    "todo_list": "To Do List",
+    "calendar": "Calendar",
+    "popular_app": {
+      "super_app": "Super App",
+      "most_popular_app": "Most Popular App",
+      "total_visits": "Total Visits",
+      "new_visits": "New Visits",
+      "sales": "Sales"
+    },
+    "traffic_chart": {
+      "view_total": "Views Total"
+    }
+  },
+  "tree_view": {
+    "title": "basic",
+    "programming": "Programming languages by programming paradigm",
+    "lua": "Lua"
+  },
+  "chart": {
+    "lines": "Lines",
+    "bars": "Bars",
+    "simple_line_chart": "Simple line chart",
+    "line_chart": "Line chart with area",
+    "donut": "Donut"
+  }
+}

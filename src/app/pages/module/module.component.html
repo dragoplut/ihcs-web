@@ -1,0 +1,94 @@
+<div class="page-content page-module">
+  <mat-card class="page-content-card">
+    <div class="card-header"><span class="page-content-title text-center">{{'general.edit' | translate}}</span></div>
+    <mat-divider></mat-divider>
+    <div class="content-half-side">
+      <div class="drop-container">
+        <file-drop headertext="" (onFileDrop)="dropped($event)"
+                   (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+          <span class="cloud-upload-text">
+            <mat-icon>cloud_upload</mat-icon>
+            <span>{{'module.dragndrop' | translate}}</span>
+          </span>
+        </file-drop>
+      </div>
+      <div class="content-line">
+        <span class="content-half-side">{{'general.size' | translate}} {{data.size}}</span>
+        <span class="content-half-side">{{'general.date' | translate}} {{data.date}}</span>
+      </div>
+      <div class="content-line" *ngIf="data.id !== 'new'">
+        <button
+          mat-button
+          type="button"
+          class="btn btn-red pull-left"
+          (click)="false"
+        >
+          <mat-icon>stop</mat-icon>
+          {{'general.stop' | translate}}
+        </button>
+        <button
+          mat-button
+          type="button"
+          class="btn btn-blue pull-left"
+          (click)="false"
+        >
+          {{'general.variables' | translate}}
+        </button>
+      </div>
+    </div>
+    <div class="content-half-side">
+      <div class="content-line">
+        <mat-form-field>
+          <input
+            matInput
+            [(ngModel)]="data.title"
+            name="moduleTitle"
+            [placeholder]="'general.title' | translate"
+            type="text"
+          >
+        </mat-form-field>
+      </div>
+      <div class="content-line">
+        <mat-form-field>
+          <textarea
+            matInput
+            [(ngModel)]="data.description"
+            name="moduleDescription"
+            [placeholder]="'general.description' | translate"
+            matTextareaAutosize
+            matAutosizeMinRows="1"
+            matAutosizeMaxRows="5"
+          ></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="page-content-actions">
+      <button
+        *ngIf="data.id !== 'new'"
+        mat-button
+        type="button"
+        class="btn btn-red pull-left"
+        (click)="false"
+      >
+        {{'general.delete' | translate}}
+      </button>
+      <button
+        mat-button
+        type="button"
+        class="btn btn-green pull-right"
+        (click)="false"
+      >
+        {{'general.apply' | translate}}
+      </button>
+      <button
+        mat-button
+        type="button"
+        class="btn btn-grey pull-right"
+        (click)="false"
+      >
+        {{'general.cancel' | translate}}
+      </button>
+    </div>
+  </mat-card>
+</div>

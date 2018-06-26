@@ -1,5 +1,6 @@
 /* this file will be extracted to main dist folder and is imported in index.html */
 /* This file is for setting global styles  */
+@import '~angular-tree-component/dist/angular-tree-component.css';
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import '~@angular/material/theming';
 @import 'variables';
@@ -12,7 +13,7 @@
 
 // define 3 theme color
 // mat-palette accepts $palette-name, main, lighter and darker variants
-$my-theme-primary: mat-palette($mat-indigo, 700, 300, 900);
+$my-theme-primary: mat-palette($mat-green, 700, 300, 900);
 $my-theme-accent: mat-palette($mat-blue-gray);
 $my-theme-warn: mat-palette($mat-deep-orange, A200);
 
@@ -44,6 +45,22 @@ $my-theme: mat-light-theme(
   background-color: $color-grey-bg;
 }
 
+.page-content-title {
+  display: block;
+  font-size: 24px;
+  margin: 0 auto;
+  line-height: 60px;
+  height: 60px;
+  width: 100%;
+}
+.page-content-actions {
+  box-sizing: border-box;
+  line-height: 34px;
+  padding: 26px 0;
+  height: 86px;
+  width: 100%;
+}
+
 .center-block {
   display: block;
   margin: 0 auto;
@@ -56,8 +73,16 @@ $my-theme: mat-light-theme(
   float: right;
 }
 
+.relative {
+  display: inline-block;
+  position: relative;
+}
+
 .shadow {
   box-shadow: 3px 3px 4px 0 rgba(#000, 0.25);
+}
+.shadow-btn {
+  box-shadow: 1px 2px 6px 2px rgba(#000, 0.25);
 }
 .shadow-light {
   box-shadow: 0 3px 4px 0 rgba(#000, 0.15);
@@ -71,8 +96,37 @@ $my-theme: mat-light-theme(
   box-shadow: 2px 2px 15px 6px rgba(0, 0, 0, 0.25);
 }
 
-.btn {
+.label-absolute {
+  background-color: $color-white;
+  font-size: 14px;
+  left: 0;
+  top: 0;
+  line-height: 36px;
+  position: absolute;
+  height: 36px;
+  min-width: 60px;
+}
+.text-center {
+  text-align: center;
+}
+.text-small {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.text-grey {
+  color: $color-grey-dark;
+}
 
+.bg-grey-light {
+  background-color: $color-grey-header-bg !important;
+}
+
+.btn {
+  font-size: 16px;
+  .mat-icon {
+    line-height: 22px;
+  }
 }
 .btn.btn-wide {
   background-color: $color-blue;
@@ -88,6 +142,126 @@ $my-theme: mat-light-theme(
   background-color: $color-light-grey;
   cursor: not-allowed;
 }
+.btn.btn-row-menu {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  line-height: 36px;
+  height: 36px;
+  width: 50px;
+  min-width: 36px;
+}
+.btn.btn-table-action {
+  box-sizing: border-box;
+  border-left: 1px solid grey;
+  color: grey;
+  margin: 0;
+  padding: 0;
+  height: 48px;
+  width: 50px;
+  min-width: 50px;
+}
+.btn.btn-table-action:hover {
+  color: $color-white !important;
+  background-color: $color-light-blue;
+  border: none;
+  mat-icon .mat-icon.material-icons {
+    color: $color-white !important;
+  }
+}
+.btn.btn-table-row-action {
+  box-sizing: border-box;
+  //color: grey;
+  margin: 0;
+  padding: 0;
+  height: 36px;
+  width: 36px;
+  min-width: 36px;
+}
+.btn.btn-table-row-action:hover {
+  //color: $color-white !important;
+  //background-color: $color-light-blue;
+  border: none;
+  mat-icon .mat-icon.material-icons {
+    //color: $color-white !important;
+  }
+}
+.btn.btn-icon-left {
+  position: absolute;
+  left: 15px;
+  top: calc(50% - 8px);
+}
+.btn.pull-left {
+  margin-left: 0;
+  margin-right: 20px;
+}
+.btn.pull-right {
+  margin-left: 20px;
+  margin-right: 0;
+}
+.btn-blue {
+  color: $color-white !important;
+  background-color: $color-blue-menu;
+  font-weight: 400 !important;
+}
+.btn-green {
+  color: $color-white !important;
+  background-color: $color-green;
+  font-weight: 400 !important;
+}
+.btn-grey {
+  color: $color-grey-dark !important;
+  background-color: $color-light-grey;
+  font-weight: 400 !important;
+}
+.btn-red {
+  color: $color-white !important;
+  background-color: $color-red;
+  font-weight: 400 !important;
+}
+.btn-blue, .btn-green, .btn-grey, .btn-red {
+  min-width: 107px;
+}
+.btn-transparent {
+  color: $color-green !important;
+  background-color: transparent;
+  font-weight: 400 !important;
+  margin: 16px 0 !important;
+}
+.btn-action-large, .btn-action-large.mat-button {
+  font-size: 12px;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 48px;
+  min-width: 120px;
+}
+.btn-action-square, .btn-action-square.mat-button {
+  border: none;
+  height: 48px;
+  width: 48px;
+}
+.mat-icon-absolute {
+  position: absolute;
+  right: 0;
+  top: calc(50% - 10px);
+  cursor: pointer;
+}
+.menu-icon-container {
+  display: inline-block;
+  text-align: left;
+  width: 20px;
+}
+.table-icon-grey {
+  color: $color-grey-dark;
+  font-size: 22px;
+  height: 22px;
+  width: 22px;
+  vertical-align: middle;
+}
+.pointer {
+  cursor: pointer;
+}
 
 /******************************************
               NAV BAR STYLES
@@ -98,11 +272,14 @@ $my-theme: mat-light-theme(
   font-size: 18px;
   text-align: center;
   .btn {
+    box-sizing: border-box;
     color: #838383;
     font-size: 18px;
     margin: 0;
+    padding: 0 5px;
     height: 68px;
-    width: 68px;
+    width: 60px;
+    min-width: 60px;
     .mat-button-wrapper {
       vertical-align: middle;
       mat-icon {
@@ -206,4 +383,346 @@ $my-theme: mat-light-theme(
   text-overflow: ellipsis;
   word-break: break-all;
   white-space: nowrap;
+}
+
+/******************************************
+    TRUNCATE OVERFLOW TEXT IN ONE LINE
+******************************************/
+.tree-container {
+  display: block;
+  position: relative;
+  .tree .tree-children::before,
+  .tree::before {
+    content: "";
+    position: absolute;
+    //border-left: 1px dotted #23527c;
+    height: 100%;
+    top: 0;
+    left: 6px
+  }
+
+  .tree {
+    padding-left: 0;
+    margin-left: -5px;
+  }
+
+  .tree .tree-children {
+    position: relative;
+    padding-left: 0;
+    margin-left: 16px
+  }
+
+  .tree .tree-children::before {
+    left: 5px
+  }
+
+  .tree tree-node>div>.node-wrapper {
+    margin-left: 24px
+  }
+
+  .tree tree-node .node-wrapper {
+    height: 32px;
+  }
+
+  .tree tree-node .node-wrapper tree-node-expander {
+    position: absolute;
+  }
+
+  .tree tree-node .node-wrapper .node-content-wrapper tree-node-content span {
+    color: $color-grey-dark;
+  }
+
+  .tree tree-node>div>.node-wrapper>.node-content-wrapper {
+    margin-left: 4px
+  }
+
+  .tree tree-node>.tree-node-leaf>.node-wrapper {
+    margin-left: 0
+  }
+
+  .tree tree-node>div::before {
+    content: "";
+    position: absolute;
+    //border-bottom: 1px dotted #23527c;
+    width: 7px;
+    margin-top: 12px;
+    left: 7px
+  }
+
+  .tree tree-node>div .toggle-children-wrapper {
+    box-sizing: border-box;
+    width: 13px;
+    height: 13px;
+    border: 1px solid $color-grey-dark;
+    border-radius: 2px;
+    position: absolute;
+    left: 0;
+    margin-top: 5px;
+    margin-left: 0;
+    display: inline-block;
+    background-color: #e5e5e5;
+    z-index: 1
+  }
+
+  .tree tree-node>div .toggle-children-wrapper.toggle-children-wrapper-expanded {
+    background-color: $color-blue-menu;
+  }
+
+  .tree tree-node>div .toggle-children-wrapper::before {
+    content: "";
+    display: inline-block;
+    width: 7px;
+    border-top: 1px solid $color-grey-dark;
+    position: absolute;
+    top: 5px;
+    left: 2px
+  }
+
+  .tree tree-node>div .toggle-children-wrapper.toggle-children-wrapper-expanded::before {
+    border-top: 1px solid $color-white;
+  }
+
+  .tree tree-node>div .toggle-children-wrapper.toggle-children-wrapper-collapsed::after {
+    content: "";
+    display: inline-block;
+    height: 7px;
+    border-left: 1px solid $color-grey-dark;
+    position: absolute;
+    top: 2px;
+    left: 5px
+  }
+
+  .tree tree-node>div .toggle-children-wrapper .toggle-children {
+    display: none
+  }
+
+  .tree tree-node>div .node-content-wrapper {
+    margin-left: 18px
+  }
+
+  .tree>tree-node>div::before {
+    left: 20px
+  }
+
+  .tree>tree-node>div>.node-wrapper>tree-node-expander>.toggle-children-wrapper {
+    left: 22px
+  }
+}
+
+.actions-container {
+  margin: 0 0 24px 0;
+  padding: 0;
+  text-align: left;
+  > label {
+    font-size: 14px;
+    margin: 16px 8px;
+  }
+}
+
+.input-number.mat-input-element {
+  border-bottom: 1px solid $color-grey-dark;
+  display: inline-block;
+  margin: 0 15px;
+  position: relative;
+  text-align: right;
+  width: 50px;
+}
+
+#groupsSelectAndSettings .mat-form-field-hide-placeholder.mat-form-field-should-float {
+  .mat-form-field-placeholder {
+    display: none;
+  }
+}
+#groupsSelectAndSettings > mat-form-field > .mat-form-field-wrapper {
+  margin: 8px 0 0 12px;
+  .mat-form-field-underline {
+    display: none;
+  }
+  div.mat-input-flex.mat-form-field-flex > div {
+    border: none;
+    margin: 0 12px;
+  }
+}
+
+.dialog-content-padded {
+  margin: 20px 0;
+  padding: 0 36px;
+  width: calc(100% - 72px);
+  .mat-radio-button {
+    margin-right: 20px;
+  }
+}
+.dialog-content-list-padded {
+  //margin: 0;
+  //padding: 0 12px;
+  //width: calc(100% - 24px);
+  max-height: 50vh;
+  overflow: auto;
+  width: 100%;
+  .mat-list-item {
+    padding: 0 20px;
+  }
+}
+.dialog-content-subheader {
+  display: inline-block;
+  margin: 15px 15px 15px 0;
+}
+
+dialog-manage-groups, dialog-group-settings, dialog-log {
+  .mat-dialog-title {
+    color: $color-black;
+    font-weight: 400;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+mat-dialog-container.mat-dialog-container {
+  padding: 24px 0;
+  overflow: hidden;
+}
+
+.btn.btn-log-interval {
+  background-color: $color-white;
+  color: $color-black;
+  margin: 5px;
+  min-width: 75px;
+  height: 50px;
+  width: 75px;
+}
+.btn.btn-log-interval-selected {
+  background-color: $color-green;
+  color: $color-white !important;
+}
+.btn.btn-block-action {
+  background-color: $color-green;
+  color: $color-white;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0;
+  min-width: 130px;
+  height: 48px;
+  width: auto;
+}
+.custom-interval-checkbox {
+  margin: 20px 0 15px;
+}
+
+.drop-zone {
+  background-color: $color-grey-bg;
+  border-radius: 0 !important;
+  border: none !important;
+  padding: 6px;
+  height: auto !important;
+  .content {
+    border: 2px dashed $color-drop-line;
+    color: grey;
+    height: 200px !important;
+  }
+  .cloud-upload-text {
+    color: $color-grey-dark;
+    display: block;
+    text-align: center;
+    width: 100%;
+    mat-icon {
+      color: $color-grey;
+      display: block;
+      font-size: 40px;
+      line-height: 40px;
+      margin: 0 auto 20px;
+    }
+  }
+}
+
+.block-container {
+  .block-header {
+    background-color: #18698e;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 0 20px;
+    height: 57px;
+    line-height: 57px;
+    width: 100%;
+    .mat-icon {
+      vertical-align: middle !important;
+    }
+  }
+  .block-content {
+    background-color: $color-white;
+    box-sizing: border-box;
+    text-align: center;
+    transition: all .3s ease !important;
+    height: 380px;
+    min-height: 380px;
+    overflow: hidden;
+    width: 100%;
+  }
+  .block-closed {
+    overflow: hidden;
+    transition: all .3s ease;
+    height: 0;
+    max-height: 0;
+    min-height: 0;
+  }
+}
+
+.actions-card-rounded {
+  box-sizing: border-box;
+  display: inline-block;
+  margin-right: 2%;
+  padding: 0;
+  position: relative;
+  height: 48px;
+  width: calc(18% - 60px);
+  overflow: hidden;
+  mat-form-field {
+    width: 100% !important;
+  }
+  .btn.btn-table-action {
+    margin-left: 0;
+  }
+}
+.block-actions {
+  display: inline-block;
+  position: relative;
+  margin: 0 0 15px;
+  text-align: center;
+  height: 57px;
+  width: 100%;
+  .custom-label {
+    line-height: 50px;
+    //margin-left: 1.5%;
+    margin-right: 1.5%;
+    vertical-align: middle;
+  }
+  .mat-card {
+    padding: 0;
+  }
+}
+
+.block-actions>.mat-card .mat-form-field-hide-placeholder.mat-form-field-should-float {
+  .mat-form-field-placeholder {
+    display: none;
+  }
+}
+.block-actions>.mat-card > mat-form-field > .mat-form-field-wrapper {
+  font-size: 14px;
+  line-height: 22px;
+  margin: 8px 8px 0 0;
+  .mat-form-field-underline, .mat-input-ripple {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    //display: none;
+  }
+  div.mat-input-flex.mat-form-field-flex > div:not(.mat-input-suffix) {
+    border: none;
+    margin: 0 0 0 24px;
+  }
+}
+.loading-spinner {
+  font-size: 36px;
+  height: 36px;
+  width: 36px;
 }

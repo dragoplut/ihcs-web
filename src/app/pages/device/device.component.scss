@@ -1,0 +1,29 @@
+@import '/../../../styles/variables';
+
+.page-device {
+  .page-content-card {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 40px;
+    width: 100%;
+  }
+  .content-half-side {
+    display: inline-block;
+    position: relative;
+    width: calc(50% - 40px);
+    vertical-align: top;
+    .content-line {
+      font-size: 16px;
+      margin: 0 0 40px;
+      height: 40px;
+      line-height: 40px;
+      width: 100%;
+      .mat-form-field {
+        margin-right: 20px;
+      }
+      .mat-form-field, .mat-form-field-infix {
+        width: calc(100% - 120px);
+      }
+    }
+  }
+}

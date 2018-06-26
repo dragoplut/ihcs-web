@@ -1,0 +1,133 @@
+<div class="actions-container">
+  <search-component (searchAction)="populateVariables($event)"></search-component>
+  <mat-card class="actions-card-rounded-square pull-right">
+    <button
+      mat-button
+      type="button"
+      class="btn btn-table-action"
+      tapable
+      [matMenuTriggerFor]="menuButch"
+      (click)="menuFor(element)"
+    >
+      <mat-icon class="material-icons">more_horiz</mat-icon>
+    </button>
+    <mat-menu #menuButch="matMenu">
+      <button mat-menu-item tapable (click)="goTo('group_settings')" *ngIf="canEdit"><span class="menu-icon-container"><img src="assets/img/settings-gear.svg"></span> {{'variables.menu.group_settings' | translate}}</button>
+      <button mat-menu-item tapable (click)="goTo('show_logs', items)"><span class="menu-icon-container"><img src="assets/img/hamburger.svg"></span> {{'variables.menu.show_logs' | translate}}</button>
+    </mat-menu>
+  </mat-card>
+  <mat-card class="actions-card-rounded pull-right" #groupsSelectAndSettings id="groupsSelectAndSettings">
+    <mat-form-field>
+      <mat-select (change)="filterGroups(groupsItems)" [placeholder]="'general.all' | translate" [formControl]="groupsItems" multiple>
+        <mat-option *ngFor="let groupsChosen of groupsList" [value]="groupsChosen">{{groupsChosen}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button
+      *ngIf="canEdit"
+      mat-button
+      type="button"
+      class="btn btn-table-action pull-right"
+      (click)="openManageGroupsDialog()"
+    >
+      <mat-icon>settings</mat-icon>
+    </button>
+  </mat-card>
+  <label for="groupsSelectAndSettings" class="pull-right">Groups: </label>
+</div>
+
+<div class="table-container mat-elevation-z8">
+  <mat-table #table [dataSource]="items" matSort>
+
+    <ng-container matColumnDef="checked">
+      <mat-header-cell *matHeaderCellDef><mat-checkbox class="example-margin" [(ngModel)]="checkedAll" (change)="selectAll()"></mat-checkbox></mat-header-cell>
+      <mat-cell *matCellDef="let element"><mat-checkbox class="example-margin" [(ngModel)]="element.checked"></mat-checkbox></mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="usage">
+      <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.usage || ''}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'variables.table.name' | translate}} </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="value">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'variables.table.value' | translate}} </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.value}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'variables.table.status' | translate}} </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.status || ''}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="groupName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'variables.table.group_name' | translate}} </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.groupName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="gain">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'variables.table.gain' | translate}} </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.gain || ''}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="offset">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'variables.table.offset' | translate}} </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.offset || 0}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="method">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{'variables.table.log' | translate}} </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <img *ngIf="element.enabled && element.method === '0'" src="assets/img/onchange.svg" class="pointer" alt="{{'variables.table.on_change' | translate}}" title="{{'variables.table.on_change' | translate}}">
+        <mat-icon *ngIf="element.enabled && element.method === '1'" class="table-icon-grey pointer" title="{{'variables.table.on_time' | translate}}">access_time</mat-icon>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="menu">
+      <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button
+          mat-button
+          tapable
+          type="button"
+          class="btn btn-table-row-action pull-right"
+          (click)="goTo('show_logs', element)"
+          *ngIf="(element.method === '0' || element.method === '1') && !canEdit"
+        >
+          <img class="center" src="assets/img/hamburger.svg">
+        </button>
+
+        <div *ngIf="canEdit" class="container">
+          <button
+            mat-button
+            type="button"
+            class="btn btn-row-menu"
+            tapable
+            [matMenuTriggerFor]="menu"
+            (click)="menuFor(element)"
+          >
+            <mat-icon class="material-icons">more_horiz</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item tapable (click)="goTo('group_settings')"><span class="menu-icon-container"><img src="assets/img/settings-gear.svg"></span> {{'variables.menu.group_settings' | translate}}</button>
+            <button mat-menu-item tapable (click)="goTo('log_settings', element)"><span class="menu-icon-container"><img src="assets/img/settings-hamburger.svg"></span> {{'variables.menu.log_settings' | translate}}</button>
+            <button mat-menu-item tapable (click)="goTo('show_logs', element)" *ngIf="(element.method === '0' || element.method === '1')"><span class="menu-icon-container"><img src="assets/img/hamburger.svg"></span> {{'variables.menu.show_logs' | translate}}</button>
+          </mat-menu>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator
+    #paginator
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 20, 50]"
+    [showFirstLastButtons]="true">
+  </mat-paginator>
+</div>

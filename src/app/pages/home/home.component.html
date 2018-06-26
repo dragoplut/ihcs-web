@@ -1,23 +1,24 @@
-<mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="false"
-               (closed)="false">
-    <mat-sidenav-content>
-      <div class="sidenav-header">
-        <span>MENU</span>
-        <button mat-button (click)="close('escape')">Close <mat-icon>close</mat-icon></button>
-      </div>
-      <p>IHCS Web Site</p>
-      <p>Installation</p>
-      <div class="example-events">
-      </div>
-    </mat-sidenav-content>
+<div class="content-overlay" (click)="openMenu()" [ngClass]="{'content-overlay-opened':navOpened}"></div>
+<div class="side-menu-container" [ngClass]="{'side-menu-opened':navOpened}">
+  <div class="sidenav-header">
+    <span>MENU</span>
+    <button mat-button (click)="openMenu()">Close <mat-icon>close</mat-icon></button>
+  </div>
+  <div class="sidenav-subheader">IHCS Web Site</div>
+  <div class="sidenav-subheader bg-grey-light">Installation</div>
+  <div class="example-events tree-container">
+    <tree-root
+      class="tree"
+      [nodes]="nodes"
+      [options]="options"
+      (toggleExpanded)="onTreeEvent($event)"
+      (activate)="onTreeEvent($event)"
+    ></tree-root>
+  </div>
+</div>
+<div class="main-container" [ngClass]="{'main-container-narrow':navOpened}">
 
-  </mat-sidenav>
-
-</mat-sidenav-container>
-
-<div class="main-container">
-  <div class="nav-menu shadow-light">
+  <div class="nav-menu shadow-light" [ngClass]="{'nav-menu-narrow':navOpened}">
     <button
       mat-button
       type="button"
@@ -26,7 +27,13 @@
     >
       <mat-icon>menu</mat-icon>
     </button>
-    <img src="assets/img/logo.png" alt="Flexicontrol" class="nav-logo pull-left">
+    <button
+      mat-button
+      type="button"
+      class="btn btn-nav pull-left"
+    >
+      <img src="assets/img/logo.png" alt="Flexicontrol" class="nav-logo pull-left">
+    </button>
     <button
       *ngIf="state._state.activeRoute.reference"
       mat-button
@@ -35,7 +42,27 @@
       (click)="goTo(state._state.activeRoute.reference)"
     >
       <mat-icon class="material-icons">arrow_back</mat-icon>
-      Back to {{state._state.activeRoute.referenceTitle}}
+      Back
+    </button>
+    <button
+      *ngIf="state._state.activeRoute.path[0] === '/home'"
+      mat-button
+      type="button"
+      class="btn btn-nav btn-logout pull-left"
+      (click)="goTo('log-book')"
+    >
+      <!--<span class="menu-icon-container"><img src="assets/img/hamburger.svg"></span>-->
+      Log Book
+    </button>
+    <button
+      *ngIf="state._state.activeRoute.path[0] === '/home'"
+      mat-button
+      type="button"
+      class="btn btn-nav btn-logout pull-left"
+      (click)="goTo('settings')"
+    >
+      <!--<span class="menu-icon-container"><img src="assets/img/settings-gear.svg"></span>-->
+      Settings
     </button>
 
     <span class="nav-title">{{state._state.activeRoute.pathTitle}}</span>
@@ -50,11 +77,32 @@
     </button>
     <div class="nav-username pull-right">
       <div>Logged as:</div>
-      <div>Flexicontrol</div>
+      <div>{{state._state.username}}</div>
     </div>
   </div>
 
   <main>
+    <!--<div class="actions-container pull-right text-right" *ngIf="state._state.activeRoute.path[0] === '/home'">-->
+      <!--<button-->
+        <!--mat-button-->
+        <!--type="button"-->
+        <!--class="btn btn-nav btn-logout"-->
+        <!--(click)="goTo('log-book')"-->
+      <!--&gt;-->
+        <!--<span class="menu-icon-container"><img src="assets/img/hamburger.svg"></span>-->
+        <!--Log Book-->
+      <!--</button>-->
+      <!--<button-->
+        <!--mat-button-->
+        <!--type="button"-->
+        <!--class="btn btn-nav btn-logout"-->
+        <!--(click)="goTo('settings')"-->
+      <!--&gt;-->
+        <!--<span class="menu-icon-container"><img src="assets/img/settings-gear.svg"></span>-->
+        <!--Settings-->
+      <!--</button>-->
+
+    <!--</div>-->
     <router-outlet></router-outlet>
   </main>
 </div>
